@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="../../resources/static/styles/style_for_edit_pages.css" rel="stylesheet"> <!-- DELETE -->
+    <title>Edit user</title>
+</head>
+<body>
+<h2>Edit User</h2>
+
+<form th:method="PUT" th:action="@{/admin/edit/{id}(id=${user.getId()})}" th:object="${user}">
+
+    <input type="hidden" name="id" th:value="${user.getId()}">
+
+    <table>
+        <tr>
+            <td>Name: </td>
+            <td><input type="text" th:field="*{name}" id="name"/></td>
+        </tr>
+        <tr>
+            <td>Surname: </td>
+            <td><input type="text" th:field="*{surname}" id="surname"/></td>
+        </tr>
+        <tr>
+            <td>Department: </td>
+            <td><input type="text" th:field="*{department}" id="department"/></td>
+        </tr>
+        <tr>
+            <td>Salary: </td>
+            <td><input type="text" th:field="*{salary}" id="salary"/></td>
+        </tr>
+        <tr>
+            <td>Email: </td>
+            <td><input type="text" th:field="*{email}" id="email"/></td>
+        </tr>
+        <tr>
+            <td>Password: </td>
+            <td><input type="text" th:field="*{password}" id="password"/></td>
+        </tr>
+
+        <br/>
+        <p>
+            <label>Select role:
+                <input type="checkbox" name="roles"
+                       th:each="role : ${roles}"
+                       th:text="${role.getName()}"
+                       th:value="${role.getId()}"
+                       th:field="*{roles}"
+                />
+            </label>
+        </p>
+        <br/>
+
+        <tr>
+            <td colspan="2"><input type="submit" value="Update"></td>
+        </tr>
+    </table>
+</form>
+
+<a href="/admin/allUsers">Back</a>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New User</title>
+</head>
+
+<body>
+
+<h2>Create New User</h2>
+
+<form th:method="POST" th:action="@{/admin/addNewUser}" th:object="${user}">
+
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><label for="name"></label><input type="text" th:field="*{name}" id="name"/></td>
+        </tr>
+        <tr>
+            <td>Surname:</td>
+            <td><label for="surname"></label><input type="text" th:field="*{surname}" id="surname"/></td>
+        </tr>
+        <tr>
+            <td>Department:</td>
+            <td><label for="department"></label><input type="text" th:field="*{department}" id="department"/></td>
+        </tr>
+        <tr>
+            <td>Salary:</td>
+            <td><label for="salary"></label><input type="text" th:field="*{salary}" id="salary"/></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><label for="email"></label><input type="text" th:field="*{email}" id="email"/></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><label for="password"></label><input type="text" th:field="*{password}" id="password"/></td>
+        </tr>
+    </table>
+    <br>
+    <p>
+        <label>Select role:
+            <input type="checkbox" name="roles"
+                   th:each="role : ${roles}"
+                   th:text="${role.getName()}"
+                   th:value="${role.getId()}"
+                   th:field="*{roles}"
+            />
+        </label>
+    </p>
+    <br>
+    <tr>
+        <input type="submit" value="Create"></td>
+    </tr>
+
+    <br>
+
+    <a href="/admin/allUsers">Back</a>
+
+</form>
+
+</body>
