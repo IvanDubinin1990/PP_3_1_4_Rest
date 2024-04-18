@@ -21,4 +21,5 @@ public class RoleServiceImp implements RoleService{
     public List<Role> getRoles() {
         return roleRepository.findAll();
     }
+
 }
