@@ -54,13 +54,6 @@ public class AdminController {
         return "redirect:/admin/allUsers";
     }
 
-    @GetMapping("edit/{id}")
-    public String editUser(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("user", userService.findUserId(id));
-        model.addAttribute("roles", roleService.getRoles());
-        return "admin/update-user";
-    }
-
     @PutMapping("/edit/{id}")
     public String updateUserInfo(@ModelAttribute("user") User user) {
         userService.saveUser(user);

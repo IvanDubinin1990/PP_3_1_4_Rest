@@ -126,6 +126,18 @@ public class User implements UserDetails {
         return roles;
     }
 
+    public StringBuilder getRolesStringBuilder() {
+        StringBuilder stringBuilderRole = new StringBuilder();
+        for (int i = 0; i < roles.size(); i++) {
+            if (roles.size() - 1 == i) {
+                stringBuilderRole.append(roles.get(i));
+            } else {
+                stringBuilderRole.append(roles.get(i)).append(", ");
+            }
+        }
+        return stringBuilderRole;
+    }
+
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
@@ -161,15 +173,4 @@ public class User implements UserDetails {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", department='" + department + '\'' +
-                ", salary=" + salary +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
 }

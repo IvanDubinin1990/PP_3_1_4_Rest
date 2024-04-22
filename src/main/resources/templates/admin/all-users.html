@@ -13,7 +13,7 @@
     <div class="container-fluid d-flex align-items-center">
 
         <h1 class="d-flex align-items-center fs-4 text-white mb-0"
-            th:text="${admin.get().getName() + ' ' + admin.get().getSurname()} +' with roles: '+ ${admin.get().getRoles()}">
+            th:text="${admin.get().getName() + ' ' + admin.get().getSurname()} +' with roles: '+ ${admin.get().getRolesStringBuilder()}">
         </h1>
 
         <a th:href="@{/logout}" class="ms-auto link-secondary text-decoration-none" hreflang="ar">Logout</a>
@@ -55,7 +55,8 @@
                            aria-selected="true">Users Table</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/admin/addNewUser" type="button" role="tab" aria-controls="new-users-pane"
+                        <a class="nav-link" href="/admin/addNewUser" type="button" role="tab"
+                           aria-controls="new-users-pane"
                            aria-selected="false">New User</a>
                     </li>
                 </ul>
@@ -90,7 +91,7 @@
                                     <td style="text-align: center" th:text="${user.getDepartment()}"></td>
                                     <td style="text-align: center" th:text="${user.getSalary()}"></td>
                                     <td style="text-align: center" th:text="${user.getEmail()}"></td>
-                                    <td style="text-align: center" th:text="${user.getRoles()}"></td>
+                                    <td style="text-align: center" th:text="${user.getRolesStringBuilder()}"></td>
 
                                     <td>
                                         <button type="button" class="btn btn-info" data-bs-toggle="modal"
@@ -99,11 +100,11 @@
                                         </button>
                                     </td>
 
-                                <td>
-                                    <form th:method="DELETE" th:action="@{/admin/delete/{id}(id=${user.getId()})}">
-                                        <input type="submit" value="Delete" class="btn bg-danger"/>
-                                    </form>
-                                </td>
+                                    <td>
+                                        <form th:method="DELETE" th:action="@{/admin/delete/{id}(id=${user.getId()})}">
+                                            <input type="submit" value="Delete" class="btn bg-danger"/>
+                                        </form>
+                                    </td>
 
                                     <div class="modal fade" th:id="${'modalEdit'+user.id}">
                                         <div class="modal-dialog">
@@ -200,7 +201,7 @@
                                                                             name="roles"
                                                                             multiple size="2">
                                                                         <option th:each="role: ${roles}"
-                                                                                th:value="${role.getId()}" >
+                                                                                th:value="${role.getId()}">
                                                                             <th:block th:text="${role.getName()}">
                                                                             </th:block>
                                                                         </option>
