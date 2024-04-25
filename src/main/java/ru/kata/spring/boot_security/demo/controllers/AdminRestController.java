@@ -18,12 +18,14 @@ import java.util.List;
 public class AdminRestController {
 
     private final UserService userService;
-    private final RoleService roleService;
+//    private final RoleService roleService;
 
     @Autowired
-    public AdminRestController(UserService userService, RoleService roleService) {
+    public AdminRestController(UserService userService
+//            , RoleService roleService
+    ) {
         this.userService = userService;
-        this.roleService = roleService;
+//        this.roleService = roleService;
     }
 
     @GetMapping
@@ -55,10 +57,10 @@ public class AdminRestController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @GetMapping(value = "/roles")
-    public ResponseEntity<Collection<Role>> getAllRoles() {
-        return ResponseEntity.ok(roleService.getRoles());
-    }
+//    @GetMapping(value = "/roles")
+//    public ResponseEntity<Collection<Role>> getAllRoles() {
+//        return ResponseEntity.ok(roleService.getRoles());
+//    }
 
     @GetMapping("/current")
     public ResponseEntity<User> getCurrentUser(Principal principal) {
