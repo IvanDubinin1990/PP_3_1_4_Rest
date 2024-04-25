@@ -56,11 +56,11 @@ public class UserServiceImp implements UserService {
     }
 
     private User findByUsername(String username) {
-        return userRepository.findByEmail(username).orElse(null);
+        return userRepository.findByEmail(username);
     }
 
     @Override
-    public Optional<User> findUserByEmail(String email) {
+    public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
