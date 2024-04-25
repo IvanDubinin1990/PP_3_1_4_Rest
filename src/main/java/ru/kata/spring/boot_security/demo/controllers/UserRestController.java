@@ -24,7 +24,8 @@ public class UserRestController {
 
     @GetMapping("/current")
     public ResponseEntity<User> getCurrentUser(Principal principal) {
-        return new ResponseEntity<>(userService.findUserByEmail(principal.getName()), HttpStatus.OK);
+        User user = userService.findUserByEmail(principal.getName());
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
 }
