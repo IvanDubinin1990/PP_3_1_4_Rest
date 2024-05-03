@@ -4,13 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.kata.spring.boot_security.demo.models.Role;
 import ru.kata.spring.boot_security.demo.models.User;
-import ru.kata.spring.boot_security.demo.services.RoleService;
 import ru.kata.spring.boot_security.demo.services.UserService;
 
 import java.security.Principal;
-import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -18,14 +15,10 @@ import java.util.List;
 public class AdminRestController {
 
     private final UserService userService;
-//    private final RoleService roleService;
 
     @Autowired
-    public AdminRestController(UserService userService
-//            , RoleService roleService
-    ) {
+    public AdminRestController(UserService userService) {
         this.userService = userService;
-//        this.roleService = roleService;
     }
 
     @GetMapping
@@ -56,11 +49,6 @@ public class AdminRestController {
         userService.deleteUser(id);
         return ResponseEntity.ok(HttpStatus.OK);
     }
-
-//    @GetMapping(value = "/roles")
-//    public ResponseEntity<Collection<Role>> getAllRoles() {
-//        return ResponseEntity.ok(roleService.getRoles());
-//    }
 
     @GetMapping("/current")
     public ResponseEntity<User> getCurrentUser(Principal principal) {
