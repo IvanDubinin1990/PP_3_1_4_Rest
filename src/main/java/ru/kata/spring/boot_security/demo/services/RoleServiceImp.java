@@ -8,7 +8,7 @@ import ru.kata.spring.boot_security.demo.repositories.RoleRepository;
 import java.util.List;
 
 @Service
-@Transactional(readOnly = true)
+@Transactional
 public class RoleServiceImp implements RoleService{
 
     private final RoleRepository roleRepository;
